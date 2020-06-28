@@ -7,7 +7,7 @@ const updateField = async function(event) {
       network: 'liquidregtest',
       mainchainNetwork: 'regtest',
     };
-    const resp = await callJsonApi('ElementsDecodeRawTransaction', req);
+    const resp = await callJsonApi(Module, 'ElementsDecodeRawTransaction', req);
     decodedtx.value = JSON.stringify(resp, (key, value) =>
             typeof value === 'bigint' ? value.toString() : value, '  ');
     return;
@@ -19,7 +19,7 @@ const updateField = async function(event) {
       hex: inputTx.value,
       network: 'regtest',
     };
-    const resp = await callJsonApi('DecodeRawTransaction', req);
+    const resp = await callJsonApi(Module, 'DecodeRawTransaction', req);
     decodedtx.value = JSON.stringify(resp, (key, value) =>
             typeof value === 'bigint' ? value.toString() : value, '  ');
   } catch (e) {
