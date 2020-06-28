@@ -1,5 +1,3 @@
-var Module = {};
-
 const ccallCfd = async function(func, returnType, argTypes, args) {
   const module = Module;
   const UTF8Decoder = typeof TextDecoder !== 'undefined' ? new TextDecoder('utf8') : undefined;
