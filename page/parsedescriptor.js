@@ -14,7 +14,7 @@ const updateField = async function(event) {
 
   try {
     const req = {
-      script: inputData.value,
+      descriptor: inputData.value,
       isElements,
       network,
       bip32DerivationPath: bip32Path.value,
