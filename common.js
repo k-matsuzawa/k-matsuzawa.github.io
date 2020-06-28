@@ -107,7 +107,7 @@ const ccallCfd = async function(func, returnType, argTypes, args) {
   const convertReturnValue = function(ret) {
     if (returnType === 'string') {
       const result = UTF8ToString(ret);
-      module["cfdjsFreeString"](ret);
+      module["_cfdjsFreeString"](ret);
       return result;
     }
     if (returnType === 'boolean') return Boolean(ret);
@@ -145,7 +145,7 @@ const callJsonApi = async function(reqName, arg) {
             typeof value === 'bigint' ? value.toString() : value);
     }
 
-    const retJson = await ccallCfd(Module['cfdjsJsonApi'], 'string', ['string', 'string'], [reqName, argStr]);
+    const retJson = await ccallCfd(Module['_cfdjsJsonApi'], 'string', ['string', 'string'], [reqName, argStr]);
     retObj = JSON.parse(retJson);
   } catch (err) {
     console.log(err);
