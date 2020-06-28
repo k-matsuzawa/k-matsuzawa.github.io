@@ -7,8 +7,7 @@ const updateField = async function(event) {
       network: 'liquidregtest',
       mainchainNetwork: 'regtest',
     };
-    const resp = await callJsonApi('ElementsDecodeRawTransaction', req);
-    decodedtx.value = resp.hex;
+    decodedtx.value = await callJsonApi('ElementsDecodeRawTransaction', req);
     return;
   } catch (e) {
   }
@@ -18,8 +17,7 @@ const updateField = async function(event) {
       hex: inputTx.value,
       network: 'regtest',
     };
-    const resp = await callJsonApi('DecodeRawTransaction', req);
-    decodedtx.value = resp.hex;
+    decodedtx.value = await callJsonApi('DecodeRawTransaction', req);
     return;
   } catch (e) {
     decodedtx.value = 'Invalid transaction format';
