@@ -28,11 +28,13 @@ const updateField = async function(event) {
 }
 
 Module['onRuntimeInitialized'] = async function(){
-  const decodeBtn = document.getElementById("execDecode");
-  decodeBtn.onclick = updateField;
   if (Module['_cfdjsJsonApi']) {
+    const decodeBtn = document.getElementById("execDecode");
+    decodeBtn.attachEvent('onclick', updateField);
     console.log("exist cfdjsJsonApi.");
   } else {
     console.log("cfdjsJsonApi not found!");
+    const decodedtx = document.getElementById("decodedtx");
+    decodedtx.value = "WebAssembly load fail.";
   }
 }
