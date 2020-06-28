@@ -46,11 +46,12 @@
       <h3 class="decodetx-title">DecodeRawTransaction</h3>
       <div class="decodetx-input">
         <div>
-          <div class="decodetx-label">Input</div>
+          <div class="decodetx-label">Input tx hex:</div>
           <textarea rows="10" id="inputTx" class="decoderawtxInput"></textarea><br>
           <input type="button" name="decode" id="execDecode" value="Decode" />
         </div>
         <div class="decodetx-output">
+          <div class="decodetx-label">Tx JSON:</div>
           <textarea rows="40" id="decodedtx" class="decoderawtxOutput" readonly></textarea>
         </div>
       </div>
@@ -61,7 +62,7 @@
     var Module = {};
     -->
     </script>
-    <script src="cfdjs_wasm.js"></script>
+    <script src="./dist/cfdjs_wasm.js"></script>
     <script src="common.js"></script>
     <script src="decoderawtransaction.js"></script>
   </body>
