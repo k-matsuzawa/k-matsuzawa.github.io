@@ -1,6 +1,5 @@
-const callJsonApi = async function(reqName, arg) {
-  const ccallCfd = async function(func, returnType, argTypes, args) {
-    const module = Module;
+const callJsonApi = async function(wasmModule, reqName, arg) {
+  const ccallCfd = async function(module, func, returnType, argTypes, args) {
     const UTF8Decoder = typeof TextDecoder !== 'undefined' ? new TextDecoder('utf8') : undefined;
     const stringToUTF8Array = function(str, heap, outIdx, maxBytesToWrite) {
       if (!(maxBytesToWrite > 0)) return 0;
@@ -145,7 +144,7 @@ const callJsonApi = async function(reqName, arg) {
             typeof value === 'bigint' ? value.toString() : value);
     }
 
-    const retJson = await ccallCfd(Module['_cfdjsJsonApi'], 'string', ['string', 'string'], [reqName, argStr]);
+    const retJson = await ccallCfd(wasmModule, wasmModule['_cfdjsJsonApi'], 'string', ['string', 'string'], [reqName, argStr]);
     retObj = JSON.parse(retJson);
   } catch (err) {
     console.log(err);
