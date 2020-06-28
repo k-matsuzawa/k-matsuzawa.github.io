@@ -20,7 +20,7 @@ const updateField = async function(event) {
       bip32DerivationPath: bip32Path.value,
     };
     const resp = await callJsonApi(Module, 'ParseDescriptor', req);
-    decoded.value = resp.scriptItems.join('\n');
+    decoded.value = JSON.stringify(resp, null, '  ');
   } catch (e) {
     decoded.value = 'Invalid descriptor format';
   }
