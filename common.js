@@ -159,8 +159,8 @@ const callJsonApi = async function(reqName, arg) {
   return retObj;
 };
 
-const ENVIRONMENT_IS_NODE = typeof process === "object" && typeof process.versions === "object" && typeof process.versions.node === "string";
-if (ENVIRONMENT_IS_NODE) {
+const PLATFORM_IS_NODE = typeof process === "object" && typeof process.versions === "object" && typeof process.versions.node === "string";
+if (PLATFORM_IS_NODE) {
   if (typeof module !== "undefined") {
     module["exports"] = callJsonApi;
   }
