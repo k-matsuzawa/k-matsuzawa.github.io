@@ -44,7 +44,7 @@ const ccallCfd = async function(func, returnType, argTypes, args) {
     return outIdx - startIdx;
   };
   const stringToUTF8 = function(str, outPtr, maxBytesToWrite) {
-    return stringToUTF8Array(str, module.HEAPU8, outPtr, maxBytesToWrite);
+    return stringToUTF8Array(str, module["HEAPU8"], outPtr, maxBytesToWrite);
   };
   const UTF8ArrayToString = function(heap, idx, maxBytesToRead) {
     const endIdx = idx + maxBytesToRead;
@@ -82,23 +82,23 @@ const ccallCfd = async function(func, returnType, argTypes, args) {
     return str;
   };
   const UTF8ToString = function(ptr, maxBytesToRead) {
-    return ptr ? UTF8ArrayToString(module.HEAPU8, ptr, maxBytesToRead) : '';
+    return ptr ? UTF8ArrayToString(module["HEAPU8"], ptr, maxBytesToRead) : '';
   };
   const writeArrayToMemory = function(array, buffer) {
-    module.HEAP8.set(array, buffer);
+    module["HEAPU8"].set(array, buffer);
   };
   const toC = {
     'string': function(str) {
       let ret = 0;
       if (str !== null && str !== undefined && str !== 0) {
         const len = (str.length << 2) + 1;
-        ret = module.stackAlloc(len);
+        ret = module["stackAlloc"](len);
         stringToUTF8(str, ret, len);
       }
       return ret;
     },
     'array': function(arr) {
-      const ret = module.stackAlloc(arr.length);
+      const ret = module["stackAlloc"](arr.length);
       writeArrayToMemory(arr, ret);
       return ret;
     },
@@ -107,7 +107,7 @@ const ccallCfd = async function(func, returnType, argTypes, args) {
   const convertReturnValue = function(ret) {
     if (returnType === 'string') {
       const result = UTF8ToString(ret);
-      module._cfdjsFreeString(ret);
+      module["cfdjsFreeString"](ret);
       return result;
     }
     if (returnType === 'boolean') return Boolean(ret);
@@ -120,7 +120,7 @@ const ccallCfd = async function(func, returnType, argTypes, args) {
     for (let i = 0; i < args.length; i++) {
       const converter = toC[argTypes[i]];
       if (converter) {
-        if (stack === 0) stack = module.stackSave();
+        if (stack === 0) stack = module["stackSave"]();
         cArgs[i] = converter(args[i]);
       } else {
         cArgs[i] = args[i];
@@ -131,7 +131,7 @@ const ccallCfd = async function(func, returnType, argTypes, args) {
   // eslint-disable-next-line prefer-spread
   let ret = func.apply(null, cArgs);
   ret = convertReturnValue(ret);
-  if (stack !== 0) module.stackRestore(stack);
+  if (stack !== 0) module["stackRestore"](stack);
   return ret;
 };
 
