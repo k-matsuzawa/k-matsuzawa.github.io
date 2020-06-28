@@ -30,7 +30,7 @@ const updateField = async function(event) {
 Module['onRuntimeInitialized'] = async function(){
   if (Module['_cfdjsJsonApi']) {
     const decodeBtn = document.getElementById("execDecode");
-    decodeBtn.attachEvent('onclick', updateField);
+    decodeBtn.addEventListener('click', updateField);
     console.log("exist cfdjsJsonApi.");
   } else {
     console.log("cfdjsJsonApi not found!");
