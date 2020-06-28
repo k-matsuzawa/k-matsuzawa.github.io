@@ -18,14 +18,7 @@
       .decoderawtxOutput {
         width: 99%;
       }
-      #authPubkey,#authkeyResult,#connectResponse {
-        width: 420px;
-      }
-      #authkey-input {
-        vertical-align: middle;
-        margin: auto;
-      }
-      #requestAuthkey {
+      .decodetx-output {
         vertical-align: top;
         margin-top: 13px;
       }
@@ -54,7 +47,8 @@
       <div class="decodetx-input">
         <div>
           <div class="decodetx-label">Input</div>
-          <textarea rows="10" id="inputTx" class="decoderawtxInput"></textarea>
+          <textarea rows="10" id="inputTx" class="decoderawtxInput"></textarea><br>
+          <input type="button" id="execDecode" value="Decode" />
         </div>
         <div class="decodetx-output">
           <textarea rows="40" id="decodedtx" class="decoderawtxOutput" readonly></textarea>

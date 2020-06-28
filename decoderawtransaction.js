@@ -28,8 +28,8 @@ const updateField = async function(event) {
 }
 
 Module['onRuntimeInitialized'] = async function(){
-  // set decoderawtx function on field change
-  document.body.addEventListener("change", updateField);
+  const decodeBtn = document.getElementById("execDecode");
+  decodeBtn.onclick = updateField;
   if (Module['_cfdjsJsonApi']) {
     console.log("exist cfdjsJsonApi.");
   } else {
