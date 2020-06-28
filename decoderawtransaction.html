@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>DecodeRawTransaction</title>
+    <style>
+      #main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 120vh;
+        font-family: sans-serif;
+      }
+      .decoderawtxInput {
+        width: 800px;
+      }
+      .decoderawtxOutput {
+        width: 800px;
+      }
+      #authPubkey,#authkeyResult,#connectResponse {
+        width: 420px;
+      }
+      #authkey-input {
+        vertical-align: middle;
+        margin: auto;
+      }
+      #requestAuthkey {
+        vertical-align: top;
+        margin-top: 13px;
+      }
+      h1 {
+        font-size: 32px;
+      }
+      h2 {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      h3 {
+        font-size: 16px;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+      }
+      .xpubkey-label {
+        font-size: 12px;
+        display: inline-block;
+        width: 8em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="decodetx">
+      <h3 class="decodetx-title">DecodeRawTransaction</h3>
+      <div class="decodetx-input">
+        <div>
+          <div class="decodetx-label">Input</div>
+          <textarea rows="10" id="inputTx" class="decoderawtxInput"></textarea>
+        </div>
+        <div class="decodetx-output">
+          <textarea rows="40" id="decodedtx" class="decoderawtxOutput" readonly></textarea>
+        </div>
+      </div>
+    </div>
+
+    <script src="common.js"></script>
+    <script src="cfdjs_wasm.js"></script>
+    <script src="decoderawtransaction.js"></script>
+  </body>
+</html>
